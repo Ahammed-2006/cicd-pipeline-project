@@ -1,11 +1,8 @@
-# Use official Nginx image
+# Use lightweight Nginx image
 FROM nginx:alpine
 
-# Copy website files into nginx html directory
-COPY src/ /usr/share/nginx/html/
+# Copy everything from repo root into nginx html folder
+COPY . /usr/share/nginx/html/
 
-# Expose port 80
+# Expose port 80 for serving
 EXPOSE 80
-
-# Run nginx
-CMD ["nginx", "-g", "daemon off;"]
