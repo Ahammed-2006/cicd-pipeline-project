@@ -12,11 +12,9 @@ pipeline {
             }
         }
 
-        stage('SonarQube Analysis') {
+        stage('Build & Test with Maven') {
             steps {
-                withSonarQubeEnv('SonarQube') { // replace with your Jenkins SonarQube config name
-                    sh 'sonar-scanner -Dsonar.projectKey=shoe-website -Dsonar.sources=./src'
-                }
+                sh "mvn clean test"
             }
         }
 
@@ -37,4 +35,3 @@ pipeline {
         }
     }
 }
-
