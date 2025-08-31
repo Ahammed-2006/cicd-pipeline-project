@@ -49,7 +49,7 @@ pipeline {
                 sh '''
                 docker stop shoe-website || true
                 docker rm shoe-website || true
-                docker run -d --name shoe-website -p 8080:80 ${DOCKER_IMAGE}
+                docker run -d --name shoe-website -p 9090:80 ${DOCKER_IMAGE}
                 '''
             }
         }
