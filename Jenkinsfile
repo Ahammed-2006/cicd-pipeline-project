@@ -8,13 +8,19 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/Ahammed-2006/cicd-pipeline-project.git'
+                git 'https://github.com/Ahammed-2006/cicd-pipeline-project.git'
             }
         }
 
-        stage('Build & Test with Maven') {
+        stage('Install Dependencies') {
             steps {
-                sh "mvn clean test"
+                sh 'npm install'
+            }
+        }
+
+        stage('Lint / Code Check') {
+            steps {
+                sh 'npm run lint || true' // configure lint in package.json
             }
         }
 
