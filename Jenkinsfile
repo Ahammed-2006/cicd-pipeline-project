@@ -8,19 +8,33 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/Ahammed-2006/cicd-pipeline-project.git'
+                git branch: 'main', url: 'https://github.com/Ahammed-2006/cicd-pipeline-project.git'
             }
         }
 
         stage('Install Dependencies') {
             steps {
-                sh 'npm install'
+                sh '''
+                if [ -f package.json ]; then
+                    echo "Installing Node.js dependencies..."
+                    npm install
+                else
+                    echo "No package.json found, skipping dependency installation."
+                fi
+                '''
             }
         }
 
         stage('Lint / Code Check') {
             steps {
-                sh 'npm run lint || true' // configure lint in package.json
+                sh '''
+                if [ -f package.json ]; then
+                    echo "Running npm lint..."
+                    npm run lint || true
+                else
+                    echo "No lint configured, skipping."
+                fi
+                '''
             }
         }
 
