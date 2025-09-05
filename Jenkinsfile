@@ -19,7 +19,7 @@ pipeline {
                     echo "Installing Node.js dependencies..."
                     npm install
                 else
-                    echo "No package.json found, skipping dependency installation."
+                    echo "hello everyone, skipping dependency installation."
                 fi
                 '''
             }
